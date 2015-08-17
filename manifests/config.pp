@@ -42,13 +42,26 @@ class flyway::config (
   $config_callbacks              = $flyway::config_callbacks,
 ) {
 
-  file { 'flayway.conf':
-    ensure  => present,
-    owner   => $flyway_user,
-    group   => $flyway_group,
-    mode    => '0755',
-    path    => "${flyway_destination}/conf/flyway.conf",
+  $concat_target_flyway_conf = "${flyway_destination}/conf/flyway.conf"
+
+  concat { $concat_target_flyway_conf:
+    ensure => present,
+    owner  => $flyway_user,
+    group  => $flyway_group,
+    mode   => '0755',
+  }
+
+  include ::file::header
+  concat::fragment { 'puppet_header':
+    target  => $concat_target_flyway_conf,
+    content => template("$::file_header::pound_header"),
+    order   => '00',
+  }
+
+  concat::fragment { 'flyway.conf_main':
+    target  => $concat_target_flyway_conf,
     content => template('flyway/flyway.conf.erb'),
+    order   => '01',
   }
 
 }
