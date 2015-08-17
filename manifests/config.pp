@@ -51,7 +51,7 @@ class flyway::config (
     mode   => '0755',
   }
 
-  include ::file::header
+  require ::file_header
   concat::fragment { 'puppet_header':
     target  => $concat_target_flyway_conf,
     content => template("$::file_header::pound_header"),
