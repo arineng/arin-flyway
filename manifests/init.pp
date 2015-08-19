@@ -53,13 +53,11 @@ class flyway (
   $config_callbacks              = undef,
 ) inherits ::flyway::params {
 
-  anchor { 'flyway::start': }
-  anchor { 'flyway::end': }
+  include flyway::prepare
+  include flyway::install
+  include flyway::config
 
-  Anchor['flyway::start'] ->
-  class { 'flyway::prepare': } ->
-  class { 'flyway::install': } ->
-  class { 'flyway::config': } ->
-  Anchor['flyway::end']
-
+  Class['flyway::prepare'] ->
+  Class['flyway::install'] ->
+  Class['flyway::config']
 }
