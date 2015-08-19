@@ -53,13 +53,13 @@ class flyway (
   $config_callbacks              = undef,
 ) inherits ::flyway::params {
 
-  anchor { 'jbossas_arin::start': }
-  anchor { 'jbossas_arin::end': }
+  anchor { 'flyway::start': }
+  anchor { 'flyway::end': }
 
-  Anchor['jbossas_arin::start'] ->
+  Anchor['flyway::start'] ->
   class { 'flyway::prepare': } ->
   class { 'flyway::install': } ->
   class { 'flyway::config': } ->
-  Anchor['jbossas_arin::end']
+  Anchor['flyway::end']
 
 }
