@@ -33,20 +33,20 @@
 # SQL Server        : jdbc:jtds:sqlserver://<host>:<port>/<database>
 # SQLite            : jdbc:sqlite:<database>
 # Vertica*          : jdbc:vertica://<host>:<port>/<database>
-flyway.url=<%= @config_url -%>
+flyway.url=<%= scope.lookupvar('flyway::config_url') -%>
 
 # Fully qualified classname of the jdbc driver (autodetected by default based on flyway.url)
-<% if @config_driver -%>
-flyway.driver=<%= @config_driver -%>
+<% if scope.lookupvar('flyway::config_driver') -%>
+flyway.driver=<%= scope.lookupvar('flyway::config_driver') -%>
 <% else -%>
 # flyway.driver=
 <% end -%>
 
 # User to use to connect to the database (default: <<null>>)
-flyway.user=<%= @config_user -%>
+flyway.user=<%= scope.lookupvar('flyway::config_user') -%>
 
 # Password to use to connect to the database (default: <<null>>)
-flyway.password=<%= @config_password -%>
+flyway.password=<%= scope.lookupvar('flyway::config_password') -%>
 
 # Comma-separated list of schemas managed by Flyway. These schema names are case-sensitive.
 # (default: The default schema for the datasource connection)
@@ -54,8 +54,8 @@ flyway.password=<%= @config_password -%>
 # - The first schema in the list will be automatically set as the default one during the migration.
 # - The first schema in the list will also be the one containing the metadata table.
 # - The schemas will be cleaned in the order of this list.
-<% if @config_schemas -%>
-flyway.schemas=<%= @config_schemas -%>
+<% if scope.lookupvar('flyway::config_schemas') -%>
+flyway.schemas=<%= scope.lookupvar('flyway::config_schemas') -%>
 <% else -%>
 # flyway.schemas=
 <% end -%>
@@ -63,8 +63,8 @@ flyway.schemas=<%= @config_schemas -%>
 # Name of Flyway's metadata table (default: schema_version)
 # By default (single-schema mode) the metadata table is placed in the default schema for the connection provided by the datasource.
 # When the flyway.schemas property is set (multi-schema mode), the metadata table is placed in the first schema of the list.
-<% if @config_table -%>
-flyway.table=<%= @config_table -%>
+<% if scope.lookupvar('flyway::config_table') -%>
+flyway.table=<%= scope.lookupvar('flyway::config_table') -%>
 <% else -%>
 # flyway.table=
 <% end -%>
@@ -73,22 +73,22 @@ flyway.table=<%= @config_table -%>
 # The location type is determined by its prefix.
 # Unprefixed locations or locations starting with classpath: point to a package on the classpath and may contain both sql and java-based migrations.
 # Locations starting with filesystem: point to a directory on the filesystem and may only contain sql migrations.
-<% if @config_locations -%>
-flyway.locations=<%= @config_locations -%>
+<% if scope.lookupvar('flyway::config_locations') -%>
+flyway.locations=<%= scope.lookupvar('flyway::config_locations') -%>
 <% else -%>
 # flyway.locations=
 <% end -%>
 
 # Comma-separated list of fully qualified class names of custom MigrationResolver to use for resolving migrations.
-<% if @config_resolvers -%>
-flyway.resolvers=<%= @config_resolvers -%>
+<% if scope.lookupvar('flyway::config_resolvers') -%>
+flyway.resolvers=<%= scope.lookupvar('flyway::config_resolvers') -%>
 <% else -%>
 # flyway.resolvers=
 <% end -%>
 
 # Comma-separated list of directories containing JDBC drivers and Java-based migrations. (default: <INSTALL-DIR>/jars)
-<% if @config_jardirs -%>
-flyway.jarDirs=<%= @config_jardirs -%>
+<% if scope.lookupvar('flyway::config_jardirs') -%>
+flyway.jarDirs=<%= scope.lookupvar('flyway::config_jardirs') -%>
 <% else -%>
 # flyway.jarDirs=
 <% end -%>
@@ -96,8 +96,8 @@ flyway.jarDirs=<%= @config_jardirs -%>
 # File name prefix for Sql migrations (default: V )
 # Sql migrations have the following file name structure: prefixVERSIONseparatorDESCRIPTIONsuffix ,
 # which using the defaults translates to V1_1__My_description.sql
-<% if @config_sqlmigrationprefix -%>
-flyway.sqlMigrationPrefix=<%= @config_sqlmigrationprefix -%>
+<% if scope.lookupvar('flyway::config_sqlmigrationprefix') -%>
+flyway.sqlMigrationPrefix=<%= scope.lookupvar('flyway::config_sqlmigrationprefix') -%>
 <% else -%>
 # flyway.sqlMigrationPrefix=
 <% end -%>
@@ -105,8 +105,8 @@ flyway.sqlMigrationPrefix=<%= @config_sqlmigrationprefix -%>
 # File name separator for Sql migrations (default: __)
 # Sql migrations have the following file name structure: prefixVERSIONseparatorDESCRIPTIONsuffix ,
 # which using the defaults translates to V1_1__My_description.sql
-<% if @config_sqlmigrationseparator -%>
-flyway.sqlMigrationSeparator=<%= @config_sqlmigrationseparator -%>
+<% if scope.lookupvar('flyway::config_sqlmigrationseparator') -%>
+flyway.sqlMigrationSeparator=<%= scope.lookupvar('flyway::config_sqlmigrationseparator') -%>
 <% else -%>
 # flyway.sqlMigrationSeparator=
 <% end -%>
@@ -114,22 +114,22 @@ flyway.sqlMigrationSeparator=<%= @config_sqlmigrationseparator -%>
 # File name suffix for Sql migrations (default: .sql)
 # Sql migrations have the following file name structure: prefixVERSIONseparatorDESCRIPTIONsuffix ,
 # which using the defaults translates to V1_1__My_description.sql
-<% if @config_sqlmigrationsuffix -%>
-flyway.sqlMigrationSuffix=<%= @config_sqlmigrationsuffix -%>
+<% if scope.lookupvar('flyway::config_sqlmigrationsuffix') -%>
+flyway.sqlMigrationSuffix=<%= scope.lookupvar('flyway::config_sqlmigrationsuffix') -%>
 <% else -%>
 # flyway.sqlMigrationSuffix=
 <% end -%>
 
 # Encoding of Sql migrations (default: UTF-8)
-<% if @config_encoding -%>
-flyway.encoding=<%= @config_encoding -%>
+<% if scope.lookupvar('flyway::config_encoding') -%>
+flyway.encoding=<%= scope.lookupvar('flyway::config_encoding') -%>
 <% else -%>
 # flyway.encoding=
 <% end -%>
 
 # Whether placeholders should be replaced. (default: true)
-<% if @config_placeholderreplacement -%>
-flyway.placeholderReplacement=<%= @config_placeholderreplacement -%>
+<% if scope.lookupvar('flyway::config_placeholderreplacement') -%>
+flyway.placeholderReplacement=<%= scope.lookupvar('flyway::config_placeholderreplacement') -%>
 <% else -%>
 # flyway.placeholderReplacement=
 <% end -%>
@@ -146,15 +146,15 @@ flyway.placeholderReplacement=<%= @config_placeholderreplacement -%>
 
 # Target version up to which Flyway should consider migrations.
 # The special value 'current' designates the current version of the schema. (default: <<latest version>>)
-<% if @config_target -%>
-flyway.target=<%= @config_target -%>
+<% if scope.lookupvar('flyway::config_target') -%>
+flyway.target=<%= scope.lookupvar('flyway::config_target') -%>
 <% else -%>
 # flyway.target=
 <% end -%>
 
 # Whether to automatically call validate or not when running migrate. (default: true)
-<% if @config_validateonmigrate -%>
-flyway.validateOnMigrate=<%= @config_validateonmigrate -%>
+<% if scope.lookupvar('flyway::config_validateonmigrate') -%>
+flyway.validateOnMigrate=<%= scope.lookupvar('flyway::config_validateonmigrate') -%>
 <% else -%>
 # flyway.validateOnMigrate=
 <% end -%>
@@ -165,22 +165,22 @@ flyway.validateOnMigrate=<%= @config_validateonmigrate -%>
 # way of dealing with this case in a smooth manner. The database will be wiped clean automatically, ensuring that
 # the next migration will bring you back to the state checked into SCM.
 # Warning ! Do not enable in production !
-<% if @config_cleanonvalidationerror -%>
-flyway.cleanOnValidationError=<%= @config_cleanonvalidationerror -%>
+<% if scope.lookupvar('flyway::config_cleanonvalidationerror') -%>
+flyway.cleanOnValidationError=<%= scope.lookupvar('flyway::config_cleanonvalidationerror') -%>
 <% else -%>
 # flyway.cleanOnValidationError=
 <% end -%>
 
 # The version to tag an existing schema with when executing baseline. (default: 1)
-<% if @config_baselineversion -%>
-flyway.baselineVersion=<%= @config_baselineversion -%>
+<% if scope.lookupvar('flyway::config_baselineversion') -%>
+flyway.baselineVersion=<%= scope.lookupvar('flyway::config_baselineversion') -%>
 <% else -%>
 # flyway.baselineVersion=
 <% end -%>
 
 # The description to tag an existing schema with when executing baseline. (default: << Flyway Baseline >>)
-<% if @config_baselinedescription -%>
-flyway.baselineDescription=<%= @config_baselinedescription -%>
+<% if scope.lookupvar('flyway::config_baselinedescription') -%>
+flyway.baselineDescription=<%= scope.lookupvar('flyway::config_baselinedescription') -%>
 <% else -%>
 # flyway.baselineDescription=
 <% end -%>
@@ -191,8 +191,8 @@ flyway.baselineDescription=<%= @config_baselinedescription -%>
 # This is useful for initial Flyway production deployments on projects with an existing DB.
 # Be careful when enabling this as it removes the safety net that ensures
 # Flyway does not migrate the wrong database in case of a configuration mistake! (default: false)
-<% if @config_baselineonmigrate -%>
-flyway.baselineOnMigrate=<%= @config_baselineonmigrate -%>
+<% if scope.lookupvar('flyway::config_baselineonmigrate') -%>
+flyway.baselineOnMigrate=<%= scope.lookupvar('flyway::config_baselineonmigrate') -%>
 <% else -%>
 # flyway.baselineOnMigrate=
 <% end -%>
@@ -200,16 +200,16 @@ flyway.baselineOnMigrate=<%= @config_baselineonmigrate -%>
 # Allows migrations to be run "out of order" (default: false).
 # If you already have versions 1 and 3 applied, and now a version 2 is found,
 # it will be applied too instead of being ignored.
-<% if @config_outoforder -%>
-flyway.outOfOrder=<%= @config_outoforder -%>
+<% if scope.lookupvar('flyway::config_outoforder') -%>
+flyway.outOfOrder=<%= scope.lookupvar('flyway::config_outoforder') -%>
 <% else -%>
 # flyway.outOfOrder=
 <% end -%>
 
 # This allows you to tie in custom code and logic to the Flyway lifecycle notifications (default: empty).
 # Set this to a comma-separated list of fully qualified FlywayCallback class name implementations
-<% if @config_callbacks -%>
-flyway.callbacks=<%= @config_callbacks -%>
+<% if scope.lookupvar('flyway::config_callbacks') -%>
+flyway.callbacks=<%= scope.lookupvar('flyway::config_callbacks') -%>
 <% else -%>
 # flyway.callbacks=
 <% end -%>

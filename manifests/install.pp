@@ -14,51 +14,40 @@
 #
 # Copyright 2015
 #
-class flyway::install (
-  $source_url          = $flyway::source_url,
-  $flyway_destination  = $flyway::flyway_destination,
-  $flyway_user         = $flyway::flyway_user,
-  $flyway_group        = $flyway::flyway_group,
-  $nexus_url           = $flyway::nexus_url,
-  $nexus_repository    = $flyway::nexus_repository,
-  $nexus_gav           = $flyway::nexus_gav,
-  $nexus_packaging     = $flyway::nexus_packaging,
-  $nexus_classifier    = $flyway::nexus_classifier,
-  $nexus_checksum_type = $flyway::nexus_checksum_type,
-) {
+class flyway::install {
 
   # Include archive class to install required faraday gems
   include ::archive
 
-  if ( $source_url ) and ( $nexus_url == undef ) {
+  if ( $flyway::source_url ) and ( $flyway::nexus_url == undef ) {
 
-    $install_file = inline_template('<%=File.basename(URI::parse(@source_url).path)%>')
+    $install_file = inline_template('<%=File.basename(URI::parse(@flyway::source_url).path)%>')
 
     archive { "/tmp/${install_file}":
-      source        => $source_url,
+      source        => $flyway::source_url,
       extract       => true,
-      extract_path  => $flyway_destination,
-      creates       => "${flyway_destination}/README.txt",
-      user          => $flyway_user,
-      group         => $flyway_group,
+      extract_path  => $flyway::flyway_destination,
+      creates       => "${flyway::flyway_destination}/README.txt",
+      user          => $flyway::flyway_user,
+      group         => $flyway::flyway_group,
       extract_flags => '--strip-components=1 -zxf'
     }
   }
-  elsif ( $nexus_url != undef ) {
-    archive::nexus { "/tmp/flyway.${nexus_packaging}":
+  elsif ( $flyway::nexus_url != undef ) {
+    archive::nexus { "/tmp/flyway.${flyway::nexus_packaging}":
       ensure        => present,
-      checksum_type => $nexus_checksum_type,
-      url           => $nexus_url,
-      gav           => $nexus_gav,
-      repository    => $nexus_repository,
-      packaging     => $nexus_packaging,
-      classifier    => $nexus_classifier,
-      owner         => $flyway_user,
-      user          => $flyway_user,
-      group         => $flyway_group,
+      checksum_type => $flyway::nexus_checksum_type,
+      url           => $flyway::nexus_url,
+      gav           => $flyway::nexus_gav,
+      repository    => $flyway::nexus_repository,
+      packaging     => $flyway::nexus_packaging,
+      classifier    => $flyway::nexus_classifier,
+      owner         => $flyway::flyway_user,
+      user          => $flyway::flyway_user,
+      group         => $flyway::flyway_group,
       extract       => true,
-      extract_path  => $flyway_destination,
-      creates       => "${flyway_destination}/README.txt",
+      extract_path  => $flyway::flyway_destination,
+      creates       => "${flyway::flyway_destination}/README.txt",
       require       => Class['archive'],
     }
   }

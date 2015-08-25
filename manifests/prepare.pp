@@ -14,41 +14,33 @@
 #
 # Copyright 2015
 #
-class flyway::prepare (
-  $manage_user         = $flyway::manage_user,
-  $flyway_user         = $flyway::flyway_user,
-  $flyway_group        = $flyway::flyway_group,
-  $flyway_gid          = $flyway::flyway_gid,
-  $flyway_uid          = $flyway::flyway_uid,
-  $flyway_user_comment = $flyway::flyway_user_comment,
-  $flyway_destination  = $flyway::flyway_destination,
-) inherits ::flyway {
+class flyway::prepare { 
 
-  if $manage_user {
+  if $flyway::manage_user {
 
-    group { $flyway_group:
+    group { $flyway::flyway_group:
       ensure => present,
-      gid    => $flyway_gid,
+      gid    => $flyway::flyway_gid,
     }
 
-    user { $flyway_user:
+    user { $flyway::flyway_user:
       ensure  => present,
-      uid     => $flyway_uid,
-      gid     => $flyway_gid,
-      groups  => $flyway_group,
+      uid     => $flyway::flyway_uid,
+      gid     => $flyway::flyway_gid,
+      groups  => $flyway::flyway_group,
       shell   => '/bin/bash',
-      home    => $flyway_destination,
-      comment => $flyway_user_comment,
-      require => Group[$flyway_group],
+      home    => $flyway::flyway_destination,
+      comment => $flyway::flyway_user_comment,
+      require => Group[$flyway::flyway_group],
     }
   }
 
-  file { $flyway_destination:
+  file { $flyway::flyway_destination:
     ensure  => directory,
-    owner   => $flyway_user,
-    group   => $flyway_group,
+    owner   => $flyway::flyway_user,
+    group   => $flyway::flyway_group,
     mode    => '0755',
-    require => User[$flyway_user],
+    require => User[$flyway::flyway_user],
   }
 
 }
