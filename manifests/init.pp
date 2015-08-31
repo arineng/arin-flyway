@@ -51,6 +51,7 @@ class flyway (
   $config_baselineonmigrate      = undef,
   $config_outoforder             = undef,
   $config_callbacks              = undef,
+  $config_placeholders           = undef,
 ) inherits ::flyway::params {
 
   include flyway::prepare
