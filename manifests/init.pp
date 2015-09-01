@@ -51,8 +51,10 @@ class flyway (
   $config_baselineonmigrate      = undef,
   $config_outoforder             = undef,
   $config_callbacks              = undef,
-  $config_placeholders           = undef,
+  $config_placeholders           = {},
 ) inherits ::flyway::params {
+
+  validate_hash($config_placeholders)
 
   include flyway::prepare
   include flyway::install

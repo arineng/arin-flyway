@@ -137,7 +137,7 @@ flyway.placeholderReplacement=<%= scope.lookupvar('flyway::config_placeholderrep
 # Placeholders to replace in Sql migrations
 # flyway.placeholders.user=
 # flyway.placeholders.my_other_placeholder=
-<% if scope.lookupvar('flyway::config_placeholders') -%>
+<%- if scope.lookupvar('flyway::config_placeholders').empty? != true -%>
 <% scope.lookupvar('flyway::config_placeholders').each do |key, val| -%>
 flyway.placeholders.<%=key%>=<%=val%>
 <% end end -%>
