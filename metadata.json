@@ -9,7 +9,8 @@
   "issues_url": null,
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
-    {"name":"arineng-file_header","version_requirement":">= 0.0.1"}
+    {"name":"puppetlabs-concat","version_requirement":">= 1.0.0"},
+    {"name":"arin-file_header","version_requirement":">= 0.0.1"}
   ]
 }
 
