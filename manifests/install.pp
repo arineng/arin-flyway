@@ -19,6 +19,9 @@ class flyway::install {
   # Include archive class to install required faraday gems
   include ::archive
 
+  # Include Java class to install java
+  include ::java
+
   if ( $flyway::source_url ) and ( $flyway::nexus_url == undef ) {
 
     $install_file = inline_template('<%=File.basename(URI::parse(@flyway::source_url).path)%>')

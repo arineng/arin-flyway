@@ -10,6 +10,7 @@
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"puppetlabs-concat","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-java","version_requirement":">= 1.4.0"},
     {"name":"arin-file_header","version_requirement":">= 0.0.1"}
   ]
 }
