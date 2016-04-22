@@ -17,10 +17,10 @@
 class flyway::install {
 
   # Include archive class to install required faraday gems
-  include ::archive
+  contain ::archive
 
   # Include Java class to install java
-  include ::java
+  contain ::java
 
   if ( $flyway::source_url ) and ( $flyway::nexus_url == undef ) {
 

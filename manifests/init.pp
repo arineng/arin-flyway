@@ -56,9 +56,9 @@ class flyway (
 
   validate_hash($config_placeholders)
 
-  include flyway::prepare
-  include flyway::install
-  include flyway::config
+  contain flyway::prepare
+  contain flyway::install
+  contain flyway::config
 
   Class['flyway::prepare'] ->
   Class['flyway::install'] ->
