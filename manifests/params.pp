@@ -1,3 +1,11 @@
+# == Overview: Parameters and sane defaults for flyway module
+#
+# == Requirements:
+#
+# == Monitoring: No monitoring is currently provided
+#
+# == Notes:
+
 class flyway::params {
 
   $source_url = 'https://bintray.com/artifact/download/business/maven/flyway-commandline-3.2.1-linux-x64.tar.gz'

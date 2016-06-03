@@ -14,7 +14,7 @@
 #
 # Copyright 2015
 #
-class flyway::prepare { 
+class flyway::prepare {
 
   if $flyway::manage_user {
 
