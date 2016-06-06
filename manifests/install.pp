@@ -33,7 +33,7 @@ class flyway::install {
       creates       => "${flyway::flyway_destination}/README.txt",
       user          => $flyway::flyway_user,
       group         => $flyway::flyway_group,
-      extract_flags => '--strip-components=1 -zxf'
+      extract_flags => '--strip-components=1 -zxf',
     }
   }
   elsif ( $flyway::nexus_url != undef ) {
@@ -54,5 +54,5 @@ class flyway::install {
       require       => Class['archive'],
     }
   }
-  
+
 }
