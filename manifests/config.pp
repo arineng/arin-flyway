@@ -14,7 +14,7 @@
 #
 # Copyright 2015
 #
-class flyway::config { 
+class flyway::config {
 
   $concat_target_flyway_conf = "${flyway::flyway_destination}/conf/flyway.conf"
 
@@ -28,7 +28,7 @@ class flyway::config {
   require ::file_header
   concat::fragment { "${concat_target_flyway_conf} puppet_header":
     target  => $concat_target_flyway_conf,
-    content => template("$::file_header::pound_header"),
+    content => template($::file_header::pound_header),
     order   => '00',
   }
 

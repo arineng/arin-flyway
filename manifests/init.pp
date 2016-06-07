@@ -1,6 +1,6 @@
 # == Class: flyway
 #
-# Install and configures Flyway 
+# Install and configures Flyway
 #
 # === Parameters
 #
